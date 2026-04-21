@@ -1,17 +1,13 @@
-# PRD — Sistem Manajemen Klinik dengan Reservasi Digital/Online
+# PRD — Sistem Informasi dan Manajemen Klinik (SIMANIK)
 
-## Desktop App C# (Visual Studio) — 3 Role: **Admin (Front Office)**, **Dokter**, **Pasien**
+## Desktop App C# (Visual Studio)
 
-> Dokumen ini disusun untuk kebutuhan tugas kelompok mata kuliah **Pemrograman Berorientasi Objek (OOP)**.  
 > Sistem dirancang untuk dibuat menggunakan **Visual Studio + C#** sebagai **aplikasi desktop**, dengan 3 role utama:
 >
 > 1. **Admin** _(merangkap front office)_
 > 2. **Dokter**
 > 3. **Pasien**
 >
-> Sistem juga dilengkapi **fitur reservasi digital/online** agar pasien bisa melakukan pemesanan jadwal secara mandiri tanpa harus datang langsung ke klinik terlebih dahulu.
->
-> Dokumen ini ditulis dalam format **Markdown** dan dilengkapi dengan **diagram Mermaid** agar lebih mudah dipahami, dipresentasikan, dan dijadikan acuan implementasi.
 
 ---
 
@@ -23,13 +19,13 @@
 
 ## 1.2 Jenis Produk
 
-Aplikasi desktop manajemen klinik dengan reservasi digital/online.
+Aplikasi desktop manajemen klinik.
 
 ## 1.3 Platform dan Teknologi
 
 - **Bahasa:** C#
 - **IDE:** Visual Studio
-- **UI:** Windows Forms _(disarankan karena lebih ringan dan realistis untuk tugas kelompok)_
+- **UI:** Windows Forms 
 - **Database:** SQL Server LocalDB atau SQLite
 - **Arsitektur:** Layer sederhana (Forms, Models, Services, Repositories, Helpers)
 
