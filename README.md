@@ -1,72 +1,104 @@
-# PRD — Aplikasi Manajemen Klinik Desktop  
-## Versi Internal Klinik dengan Role **Admin** dan **User**
+# PRD — Sistem Manajemen Klinik dengan Reservasi Digital/Online
 
-> Dokumen ini disusun untuk kebutuhan tugas kelompok mata kuliah **Pemrograman Berorientasi Objek**.  
-> Aplikasi dirancang untuk **internal klinik**, berbasis **desktop**, dikembangkan dengan **Visual Studio + C#**, dan ditujukan agar **fiturnya lengkap, saling terhubung, serta seluruh alurnya bisa berjalan** secara logis.
+## Desktop App C# (Visual Studio) — 3 Role: **Admin (Front Office)**, **Dokter**, **Pasien**
 
----
-
-# 1. Identitas Produk
-
-**Nama Aplikasi:** KlinikSehat Desktop  
-**Jenis Aplikasi:** Desktop Application  
-**Platform:** Windows  
-**Bahasa Pemrograman:** C#  
-**IDE:** Visual Studio  
-**UI yang Disarankan:** Windows Forms  
-**Database yang Disarankan:** SQL Server LocalDB / SQLite  
-**Target Pengguna:** Staf internal klinik  
-**Jumlah Role:** 2 role login
-- **Admin**
-- **User**
+> Dokumen ini disusun untuk kebutuhan tugas kelompok mata kuliah **Pemrograman Berorientasi Objek (OOP)**.  
+> Sistem dirancang untuk dibuat menggunakan **Visual Studio + C#** sebagai **aplikasi desktop**, dengan 3 role utama:
+>
+> 1. **Admin** _(merangkap front office)_
+> 2. **Dokter**
+> 3. **Pasien**
+>
+> Sistem juga dilengkapi **fitur reservasi digital/online** agar pasien bisa melakukan pemesanan jadwal secara mandiri tanpa harus datang langsung ke klinik terlebih dahulu.
+>
+> Dokumen ini ditulis dalam format **Markdown** dan dilengkapi dengan **diagram Mermaid** agar lebih mudah dipahami, dipresentasikan, dan dijadikan acuan implementasi.
 
 ---
 
-# 2. Ringkasan Produk
+# 1. Ringkasan Produk
 
-KlinikSehat Desktop adalah aplikasi manajemen klinik sederhana namun lengkap yang digunakan untuk membantu operasional internal klinik, meliputi:
+## 1.1 Nama Produk
 
-- login dan manajemen akun internal,
-- pengelolaan data pasien,
-- pengelolaan data dokter,
-- pengelolaan data obat,
-- pencatatan pendaftaran atau kunjungan pasien,
+**Sistem dan Manajemen Klinik**
+
+## 1.2 Jenis Produk
+
+Aplikasi desktop manajemen klinik dengan reservasi digital/online.
+
+## 1.3 Platform dan Teknologi
+
+- **Bahasa:** C#
+- **IDE:** Visual Studio
+- **UI:** Windows Forms _(disarankan karena lebih ringan dan realistis untuk tugas kelompok)_
+- **Database:** SQL Server LocalDB atau SQLite
+- **Arsitektur:** Layer sederhana (Forms, Models, Services, Repositories, Helpers)
+
+## 1.4 Tujuan Utama
+
+Membangun sistem klinik yang memungkinkan:
+
+- pasien membuat reservasi digital/online,
+- admin/front office mengelola operasional harian,
+- dokter memeriksa pasien dan mengisi hasil pemeriksaan,
+- seluruh data tersimpan terstruktur dan saling berelasi.
+
+---
+
+# 2. Latar Belakang
+
+Pada banyak klinik kecil, proses berikut masih sering dilakukan secara manual atau setengah manual:
+
+- pendaftaran pasien,
+- pengaturan jadwal dokter,
+- reservasi kunjungan,
 - pencatatan hasil pemeriksaan,
-- pencatatan obat yang diberikan,
-- penelusuran riwayat pasien,
-- monitoring ringkas melalui dashboard.
+- pemberian obat,
+- pencarian riwayat pasien.
 
-Aplikasi ini dibuat agar:
-1. **cukup lengkap** untuk terlihat serius saat presentasi,
-2. **tetap realistis** untuk dikerjakan oleh tim kecil,
-3. sangat cocok untuk menunjukkan penerapan **Object-Oriented Programming (OOP)**.
+Akibatnya:
+
+- data mudah tercecer,
+- pencarian data pasien lambat,
+- status reservasi tidak jelas,
+- antrian kurang tertata,
+- riwayat pemeriksaan sulit ditelusuri,
+- stok obat sulit dipantau.
+
+Karena itu, dibutuhkan sistem sederhana tetapi tetap lengkap yang dapat:
+
+- memfasilitasi **reservasi digital**,
+- mempermudah kerja **front office/admin**,
+- mendukung kerja **dokter**,
+- memberi pengalaman lebih baik untuk **pasien**.
 
 ---
 
-# 3. Latar Belakang
+# 3. Visi Produk
 
-Dalam operasional klinik kecil, data pasien, dokter, dan pemeriksaan sering masih dicatat secara manual atau tersebar di banyak file. Hal ini menyebabkan:
+Menyediakan aplikasi desktop klinik yang:
 
-- pencarian data pasien lambat,
-- riwayat kunjungan sulit dilacak,
-- data pemeriksaan tidak terstruktur,
-- stok dan penggunaan obat sulit dipantau,
-- rawan salah input dan duplikasi data.
-
-Melalui aplikasi desktop ini, seluruh proses inti klinik dapat dicatat dalam satu sistem yang rapi dan saling terhubung.
+- memiliki alur kerja realistis,
+- mendukung reservasi digital/online,
+- menampilkan pembagian hak akses berdasarkan role,
+- menerapkan konsep OOP dengan jelas,
+- cukup lengkap untuk presentasi, namun masih realistis untuk dibangun oleh tim mahasiswa.
 
 ---
 
 # 4. Tujuan Produk
 
-## 4.1 Tujuan Utama
-- Membantu staf klinik mengelola data operasional secara digital.
-- Memudahkan pencarian pasien dan riwayat kunjungan.
-- Menyatukan alur pendaftaran, pemeriksaan, dan pemberian obat dalam satu sistem.
-- Membuat sistem yang cukup lengkap tetapi masih bisa selesai dikerjakan untuk tugas kuliah.
+## 4.1 Tujuan Operasional
+
+- Memudahkan pasien melakukan reservasi secara digital.
+- Memudahkan admin/front office memverifikasi reservasi dan mengatur kedatangan pasien.
+- Memudahkan dokter melihat jadwal dan pasien yang harus ditangani.
+- Menyimpan hasil pemeriksaan dan riwayat pasien dalam satu sistem.
+- Menyediakan data obat dan pencatatan obat yang diberikan.
 
 ## 4.2 Tujuan Akademik
-Aplikasi ini juga dibuat untuk menunjukkan penerapan konsep:
+
+Menjadi proyek yang kuat untuk menunjukkan:
+
 - **Encapsulation**
 - **Inheritance**
 - **Polymorphism**
@@ -76,347 +108,436 @@ Aplikasi ini juga dibuat untuk menunjukkan penerapan konsep:
 
 ---
 
-# 5. Role Pengguna
+# 5. Ruang Lingkup Sistem
 
-## 5.1 Admin
-Admin adalah pengguna dengan akses penuh.
+## 5.1 Yang Termasuk dalam Sistem
 
-### Hak Akses Admin
-- login
-- melihat dashboard
-- mengelola akun internal
-- menambah, mengubah, menghapus data pasien
-- menambah, mengubah, menghapus data dokter
-- menambah, mengubah, menghapus data obat
-- mencatat kunjungan pasien
-- mencatat pemeriksaan pasien
-- mencatat obat yang diberikan
-- melihat seluruh riwayat pasien
-- melihat laporan sederhana
-
----
-
-## 5.2 User
-User adalah staf internal klinik dengan akses operasional harian.
-
-### Hak Akses User
-- login
-- melihat dashboard
-- melihat dan mencari data pasien
-- melihat data dokter
-- melihat data obat
-- mencatat kunjungan pasien
-- mencatat pemeriksaan pasien
-- mencatat obat yang diberikan
-- melihat riwayat pasien
-
-### Batasan User
-- tidak dapat menghapus data master
-- tidak dapat mengelola akun internal
-- tidak dapat mengubah seluruh konfigurasi sistem
-
----
-
-# 6. Matriks Hak Akses
-
-| Fitur | Admin | User |
-|---|---|---|
-| Login | Ya | Ya |
-| Dashboard | Ya | Ya |
-| Kelola Akun Internal | Ya | Tidak |
-| Tambah Pasien | Ya | Tidak |
-| Edit Pasien | Ya | Tidak |
-| Hapus Pasien | Ya | Tidak |
-| Lihat / Cari Pasien | Ya | Ya |
-| Tambah Dokter | Ya | Tidak |
-| Edit Dokter | Ya | Tidak |
-| Hapus Dokter | Ya | Tidak |
-| Lihat Dokter | Ya | Ya |
-| Tambah Obat | Ya | Tidak |
-| Edit Obat | Ya | Tidak |
-| Hapus Obat | Ya | Tidak |
-| Lihat Obat | Ya | Ya |
-| Catat Kunjungan | Ya | Ya |
-| Catat Pemeriksaan | Ya | Ya |
-| Catat Obat yang Diberikan | Ya | Ya |
-| Lihat Riwayat Pasien | Ya | Ya |
-| Laporan Ringkas | Ya | Ya |
-
----
-
-# 7. Ruang Lingkup Sistem
-
-## 7.1 Yang Termasuk
-1. Login dan otorisasi role
-2. Dashboard
-3. Manajemen akun internal
-4. Manajemen data pasien
+1. Registrasi akun pasien
+2. Login multi-role
+3. Dashboard sesuai role
+4. Manajemen akun user internal dan pasien
 5. Manajemen data dokter
-6. Manajemen data obat
-7. Pendaftaran / kunjungan pasien
-8. Pemeriksaan pasien
-9. Detail obat yang diberikan saat pemeriksaan
-10. Riwayat pasien
-11. Laporan sederhana berbasis data yang sudah ada
+6. Manajemen jadwal dokter
+7. Reservasi digital/online
+8. Konfirmasi reservasi
+9. Registrasi kedatangan pasien
+10. Antrian/kunjungan pasien
+11. Pemeriksaan pasien
+12. Data obat
+13. Pemberian obat saat pemeriksaan
+14. Riwayat reservasi
+15. Riwayat pemeriksaan pasien
+16. Laporan sederhana
 
-## 7.2 Yang Tidak Termasuk
-1. Sistem pembayaran
+## 5.2 Yang Tidak Termasuk
+
+1. Pembayaran online
 2. Integrasi BPJS
 3. Integrasi laboratorium
-4. Integrasi WhatsApp / SMS
-5. Multi-cabang klinik
-6. Sistem web dan mobile
-7. Sinkronisasi cloud
-8. Rekam medis tingkat rumah sakit
-9. Tanda tangan digital dokter
+4. Notifikasi WhatsApp/SMS
+5. Tanda tangan digital
+6. Multi-cabang klinik
+7. Aplikasi mobile native
+8. Sinkronisasi cloud publik
+9. Telemedicine / video call
 
-> Fokus sistem adalah **operasional inti klinik**.  
-> Dengan batasan ini, fitur tetap lengkap dan saling terhubung, tetapi tidak melebar ke area yang terlalu kompleks.
-
----
-
-# 8. Fitur Utama Sistem
-
-## 8.1 Login dan Otorisasi
-Fitur untuk autentikasi pengguna internal.
-
-### Fungsi
-- validasi username dan password
-- membedakan role Admin dan User
-- menampilkan menu sesuai hak akses
+> Reservasi disebut **digital/online** karena pasien bisa memesan slot/jadwal secara mandiri lewat sistem sebelum datang ke klinik.  
+> Untuk implementasi tugas, modul pasien dapat dibuat sebagai **role pasien** di aplikasi yang sama atau sebagai proyek desktop terpisah yang tetap memakai database yang sama.
 
 ---
 
-## 8.2 Dashboard
-Menampilkan ringkasan data utama.
+# 6. Role Pengguna
 
-### Informasi Dashboard
-- jumlah pasien
-- jumlah dokter
-- jumlah obat
-- jumlah kunjungan hari ini
+Sistem memakai **3 role**, sesuai revisi dosen:
+
+## 6.1 Admin (Merangkap Front Office)
+
+Admin/front office bertanggung jawab terhadap operasional administrasi dan manajemen data.
+
+### Tugas Utama Admin
+
+- mengelola akun user
+- mengelola data dokter
+- mengelola jadwal dokter
+- memverifikasi reservasi pasien
+- mencatat kedatangan pasien
+- mengelola data obat
+- memantau antrian
+- melihat laporan dan data keseluruhan
+
+## 6.2 Dokter
+
+Dokter bertanggung jawab terhadap pelayanan medis di sistem.
+
+### Tugas Utama Dokter
+
+- melihat daftar pasien hari ini
+- melihat detail reservasi/kunjungan
+- melihat riwayat pasien
+- mengisi hasil pemeriksaan
+- menentukan diagnosa
+- menambahkan catatan tindakan
+- memilih obat yang diberikan
+- menyelesaikan pemeriksaan
+
+## 6.3 Pasien
+
+Pasien merupakan pengguna eksternal yang menggunakan sistem untuk reservasi dan melihat datanya sendiri.
+
+### Tugas Utama Pasien
+
+- registrasi akun
+- login
+- mengelola profil
+- melihat jadwal dokter
+- membuat reservasi digital/online
+- melihat status reservasi
+- membatalkan reservasi
+- melihat riwayat reservasi
+- melihat riwayat pemeriksaan sederhana
+
+---
+
+# 7. Matriks Hak Akses
+
+| Fitur                         | Admin | Dokter   | Pasien          |
+| ----------------------------- | ----- | -------- | --------------- |
+| Registrasi akun pasien        | Tidak | Tidak    | Ya              |
+| Login                         | Ya    | Ya       | Ya              |
+| Dashboard                     | Ya    | Ya       | Ya              |
+| Kelola akun user              | Ya    | Tidak    | Tidak           |
+| Kelola data dokter            | Ya    | Tidak    | Tidak           |
+| Kelola jadwal dokter          | Ya    | Tidak    | Tidak           |
+| Lihat jadwal dokter           | Ya    | Ya       | Ya              |
+| Kelola data obat              | Ya    | Tidak    | Tidak           |
+| Buat reservasi online         | Tidak | Tidak    | Ya              |
+| Lihat reservasi sendiri       | Tidak | Tidak    | Ya              |
+| Batalkan reservasi sendiri    | Tidak | Tidak    | Ya              |
+| Lihat semua reservasi         | Ya    | Tidak    | Tidak           |
+| Verifikasi reservasi          | Ya    | Tidak    | Tidak           |
+| Registrasi kedatangan pasien  | Ya    | Tidak    | Tidak           |
+| Lihat antrian hari ini        | Ya    | Ya       | Tidak           |
+| Lihat detail pasien           | Ya    | Ya       | Pasien sendiri  |
+| Isi hasil pemeriksaan         | Tidak | Ya       | Tidak           |
+| Tambahkan obat ke pemeriksaan | Tidak | Ya       | Tidak           |
+| Lihat riwayat pasien          | Ya    | Ya       | Riwayat sendiri |
+| Lihat laporan                 | Ya    | Terbatas | Tidak           |
+
+---
+
+# 8. Gambaran Umum Alur Sistem
+
+Alur besar sistem adalah:
+
+1. Pasien melakukan registrasi akun
+2. Pasien login
+3. Pasien melihat jadwal dokter
+4. Pasien membuat reservasi online
+5. Admin memverifikasi reservasi
+6. Saat pasien datang, admin mengubah status menjadi hadir/check-in
+7. Dokter melihat antrian pasien hari itu
+8. Dokter membuka data pasien dan riwayat sebelumnya
+9. Dokter mengisi hasil pemeriksaan
+10. Dokter memilih obat yang diberikan
+11. Sistem menyimpan data pemeriksaan, resep, dan riwayat
+12. Admin dapat melihat laporan operasional sederhana
+
+---
+
+# 9. Fitur Utama Sistem
+
+## 9.1 Registrasi dan Login
+
+Fitur untuk autentikasi user.
+
+### Subfitur
+
+- registrasi akun pasien
+- login semua role
+- logout
+- validasi username/password
+- pembacaan role dan pengalihan ke dashboard yang sesuai
+
+## 9.2 Dashboard Berdasarkan Role
+
+### Dashboard Admin
+
+Menampilkan:
+
+- total pasien
+- total dokter
+- total reservasi hari ini
+- total pasien check-in
+- total pemeriksaan selesai
+- stok obat rendah
+
+### Dashboard Dokter
+
+Menampilkan:
+
+- jadwal praktik hari ini
+- daftar pasien hari ini
+- jumlah pasien menunggu
 - jumlah pemeriksaan selesai
-- jumlah kunjungan menunggu
 
----
+### Dashboard Pasien
 
-## 8.3 Manajemen Akun Internal
-Digunakan khusus oleh Admin untuk mengelola akun petugas klinik.
+Menampilkan:
 
-### Data Akun
-- ID User
-- Nama
-- Username
-- Password
-- Role
-- Status aktif / nonaktif
+- profil singkat
+- reservasi terdekat
+- status reservasi terakhir
+- riwayat kunjungan terakhir
 
----
+## 9.3 Manajemen Akun
 
-## 8.4 Manajemen Data Pasien
-Digunakan untuk menyimpan data pasien.
+Digunakan admin untuk mengelola akun user internal dan memantau akun pasien.
 
-### Fungsi
-- tambah pasien
-- edit pasien
-- hapus pasien
-- cari pasien
-- lihat detail pasien
+### Subfitur
 
-### Data Pasien
-- ID Pasien
-- Nama
-- Tanggal Lahir
-- Jenis Kelamin
-- Alamat
-- No. Telepon
+- tambah akun admin/dokter
+- ubah akun
+- nonaktifkan akun
+- lihat daftar user
+- cari user
 
----
+> Akun pasien dapat dibuat mandiri oleh pasien melalui registrasi.
 
-## 8.5 Manajemen Data Dokter
-Digunakan untuk menyimpan data dokter yang menangani pasien.
+## 9.4 Manajemen Data Dokter
 
-### Fungsi
+Digunakan admin untuk menyimpan dan mengatur dokter.
+
+### Subfitur
+
 - tambah dokter
-- edit dokter
-- hapus dokter
+- ubah dokter
+- hapus/nonaktifkan dokter
 - cari dokter
 - lihat detail dokter
 
 ### Data Dokter
+
 - ID Dokter
-- Nama Dokter
+- Nama
 - Spesialisasi
-- No. Telepon
-- Jadwal Praktik Sederhana
+- Nomor telepon
+- Status aktif
 
----
+## 9.5 Manajemen Jadwal Dokter
 
-## 8.6 Manajemen Data Obat
-Digunakan untuk menyimpan data obat klinik.
+Digunakan admin untuk mengatur jadwal praktik dokter.
 
-### Fungsi
+### Subfitur
+
+- tambah jadwal
+- ubah jadwal
+- hapus jadwal
+- melihat slot yang tersedia
+- menentukan kuota maksimal pasien per jadwal
+
+### Data Jadwal
+
+- ID Jadwal
+- Dokter
+- Hari/Tanggal
+- Jam mulai
+- Jam selesai
+- Kuota pasien
+- Status aktif
+
+## 9.6 Profil Pasien
+
+Digunakan pasien untuk melengkapi identitas.
+
+### Subfitur
+
+- lihat profil
+- ubah profil
+- ubah nomor telepon
+- ubah alamat
+- lihat nomor rekam pasien sederhana
+
+### Data Pasien
+
+- ID Pasien
+- User akun
+- Nama lengkap
+- Tanggal lahir
+- Jenis kelamin
+- Alamat
+- Nomor telepon
+
+## 9.7 Reservasi Digital/Online
+
+Fitur utama untuk pasien membuat reservasi sebelum datang.
+
+### Subfitur
+
+- melihat daftar dokter
+- melihat jadwal dokter
+- memilih tanggal/jadwal
+- memilih keluhan awal
+- membuat reservasi
+- melihat status reservasi
+- membatalkan reservasi selama belum check-in
+
+### Status Reservasi
+
+- Menunggu Verifikasi
+- Dikonfirmasi
+- Ditolak
+- Dibatalkan Pasien
+- Check-in
+- Selesai
+
+## 9.8 Verifikasi Reservasi
+
+Digunakan admin/front office untuk memproses reservasi masuk.
+
+### Subfitur
+
+- lihat daftar reservasi baru
+- konfirmasi reservasi
+- tolak reservasi
+- ubah jadwal bila diperlukan
+- lihat alasan pembatalan/penolakan
+- registrasi check-in saat pasien datang
+
+## 9.9 Kunjungan / Antrian
+
+Merupakan data operasional pasien yang benar-benar datang dan akan diperiksa.
+
+### Subfitur
+
+- buat kunjungan dari reservasi yang sudah check-in
+- nomor antrian sederhana
+- status kunjungan
+- daftar pasien menunggu
+- daftar pasien diperiksa
+- daftar pasien selesai
+
+### Status Kunjungan
+
+- Menunggu
+- Sedang Diperiksa
+- Selesai
+
+## 9.10 Pemeriksaan Pasien
+
+Digunakan dokter saat melayani pasien.
+
+### Subfitur
+
+- lihat daftar pasien antrian
+- buka detail pasien
+- lihat riwayat pemeriksaan sebelumnya
+- isi keluhan saat ini
+- isi diagnosa
+- isi catatan/tindakan
+- simpan pemeriksaan
+- selesaikan kunjungan
+
+### Data Pemeriksaan
+
+- ID Pemeriksaan
+- Kunjungan
+- Dokter
+- Tanggal pemeriksaan
+- Keluhan
+- Diagnosa
+- Catatan tindakan
+
+## 9.11 Manajemen Obat
+
+Digunakan admin untuk menyimpan master data obat.
+
+### Subfitur
+
 - tambah obat
-- edit obat
-- hapus obat
+- ubah obat
+- hapus/nonaktifkan obat
 - cari obat
-- lihat stok
+- lihat stok obat
+- lihat obat hampir habis
 
 ### Data Obat
+
 - ID Obat
-- Nama Obat
+- Nama obat
 - Jenis
 - Stok
 - Satuan
-- Aturan Pakai
+- Aturan pakai default
+
+## 9.12 Resep / Obat yang Diberikan
+
+Digunakan dokter saat selesai memeriksa pasien.
+
+### Subfitur
+
+- pilih obat
+- isi jumlah
+- isi aturan pakai
+- tambah lebih dari satu obat
+- validasi stok
+- pengurangan stok otomatis
+
+## 9.13 Riwayat
+
+### Riwayat untuk Pasien
+
+- riwayat reservasi sendiri
+- riwayat pemeriksaan sendiri
+- ringkasan obat yang pernah diberikan
+
+### Riwayat untuk Dokter
+
+- riwayat pasien yang pernah diperiksa
+- pemeriksaan sebelumnya
+
+### Riwayat untuk Admin
+
+- semua reservasi
+- semua pemeriksaan
+- data kunjungan per periode
+
+## 9.14 Laporan Sederhana
+
+Digunakan admin untuk monitoring.
+
+### Laporan yang Disarankan
+
+- reservasi per hari
+- reservasi per dokter
+- kunjungan selesai per hari
+- jumlah pasien per dokter
+- obat yang paling sering diberikan
+- stok obat menipis
+
+> Laporan cukup berupa grid/table/filter sederhana pada Windows Forms.  
+> Tidak wajib ekspor PDF agar scope tetap realistis.
 
 ---
 
-## 8.7 Pendaftaran / Kunjungan Pasien
-Digunakan ketika pasien datang ke klinik.
+# 10. Use Case Utama
 
-### Fungsi
-- memilih pasien
-- memilih dokter
-- mencatat tanggal kunjungan
-- mencatat keluhan awal
-- menyimpan status kunjungan
+## 10.1 Use Case List
 
-### Data Kunjungan
-- ID Kunjungan
-- Pasien
-- Dokter
-- Tanggal Kunjungan
-- Keluhan Awal
-- Status
-
-### Status Kunjungan
-- Menunggu
-- Diperiksa
-- Selesai
-
----
-
-## 8.8 Pemeriksaan Pasien
-Digunakan untuk mencatat hasil pemeriksaan pasien.
-
-### Fungsi
-- memilih kunjungan
-- mencatat diagnosa
-- mencatat tindakan atau catatan
-- menyimpan hasil pemeriksaan
-- mengubah status kunjungan
-
-### Data Pemeriksaan
-- ID Pemeriksaan
-- Kunjungan
-- Tanggal Pemeriksaan
-- Diagnosa
-- Tindakan / Catatan
-
----
-
-## 8.9 Detail Obat pada Pemeriksaan
-Digunakan untuk mencatat obat apa saja yang diberikan kepada pasien saat pemeriksaan.
-
-### Fungsi
-- memilih obat
-- menentukan jumlah obat
-- menghubungkan obat dengan pemeriksaan
-- mengurangi stok obat otomatis
-
-### Data Detail Obat
-- ID Detail
-- Pemeriksaan
-- Obat
-- Jumlah
-- Keterangan aturan pakai
-
----
-
-## 8.10 Riwayat Pasien
-Digunakan untuk melihat seluruh riwayat kunjungan dan pemeriksaan pasien.
-
-### Informasi yang Ditampilkan
-- data pasien
-- daftar kunjungan
-- dokter yang menangani
-- diagnosa
-- tindakan
-- daftar obat yang diberikan
-
----
-
-## 8.11 Laporan Sederhana
-Laporan yang ditampilkan langsung di aplikasi.
-
-### Bentuk Laporan
-- daftar kunjungan per hari
-- daftar pemeriksaan selesai
-- daftar pasien yang paling sering berkunjung
-- stok obat yang hampir habis
-
-> Laporan cukup berupa tampilan tabel/filter sederhana, tidak harus PDF.
-
----
-
-# 9. Alur Besar Sistem
-
-1. Pengguna membuka aplikasi
-2. Pengguna login
-3. Sistem membaca role
-4. Dashboard tampil sesuai hak akses
-5. Pengguna mengelola data master atau operasional
-6. Pasien didaftarkan
-7. Pemeriksaan dicatat
-8. Obat yang diberikan dicatat
-9. Riwayat pasien terbentuk otomatis
-10. Data dapat ditampilkan kembali di dashboard dan laporan
-
----
-
-# 10. Alur Operasional Detail
-
-## 10.1 Alur Pasien Baru
-1. Admin login
-2. Admin membuka menu pasien
-3. Admin mengisi data pasien
-4. Sistem memvalidasi
-5. Sistem menyimpan pasien
-6. Data pasien bisa dipakai pada pendaftaran kunjungan
-
----
-
-## 10.2 Alur Kunjungan Pasien
-1. Pengguna login
-2. Pengguna membuka menu kunjungan
-3. Pengguna memilih pasien
-4. Pengguna memilih dokter
-5. Pengguna menulis keluhan awal
-6. Sistem menyimpan kunjungan
-7. Status awal menjadi **Menunggu**
-
----
-
-## 10.3 Alur Pemeriksaan
-1. Pengguna membuka daftar kunjungan
-2. Pengguna memilih kunjungan dengan status Menunggu
-3. Pengguna mengisi diagnosa
-4. Pengguna mengisi tindakan atau catatan
-5. Pengguna memilih obat yang diberikan
-6. Sistem menyimpan pemeriksaan
-7. Sistem menyimpan detail obat
-8. Sistem mengurangi stok obat
-9. Status kunjungan berubah menjadi **Selesai**
-
----
-
-## 10.4 Alur Riwayat Pasien
-1. Pengguna membuka menu riwayat
-2. Pengguna mencari pasien
-3. Sistem menampilkan daftar kunjungan pasien
-4. Pengguna memilih salah satu riwayat
-5. Sistem menampilkan detail pemeriksaan dan obat
+1. Registrasi akun pasien
+2. Login
+3. Kelola akun
+4. Kelola dokter
+5. Kelola jadwal dokter
+6. Kelola data obat
+7. Kelola profil pasien
+8. Buat reservasi online
+9. Verifikasi reservasi
+10. Check-in pasien
+11. Lihat antrian pasien
+12. Isi hasil pemeriksaan
+13. Tambah obat ke pemeriksaan
+14. Lihat riwayat
+15. Lihat laporan
 
 ---
 
@@ -424,440 +545,521 @@ Laporan yang ditampilkan langsung di aplikasi.
 
 ```mermaid
 flowchart LR
-    A[Admin]
-    U[User]
+    A[Admin / Front Office]
+    D[Dokter]
+    P[Pasien]
 
-    subgraph Sistem[Aplikasi Manajemen Klinik Desktop]
-        UC1([Login])
-        UC2([Lihat Dashboard])
-        UC3([Kelola Akun Internal])
-        UC4([Kelola Data Pasien])
-        UC5([Kelola Data Dokter])
+    subgraph Sistem[Sistem KlinikSehat]
+        UC1([Registrasi Akun Pasien])
+        UC2([Login])
+        UC3([Kelola Akun])
+        UC4([Kelola Dokter])
+        UC5([Kelola Jadwal Dokter])
         UC6([Kelola Data Obat])
-        UC7([Catat Kunjungan])
-        UC8([Catat Pemeriksaan])
-        UC9([Catat Detail Obat])
-        UC10([Lihat Riwayat Pasien])
-        UC11([Lihat Laporan])
+        UC7([Kelola Profil Pasien])
+        UC8([Buat Reservasi Online])
+        UC9([Lihat Status Reservasi])
+        UC10([Verifikasi Reservasi])
+        UC11([Check-in Pasien])
+        UC12([Lihat Antrian])
+        UC13([Isi Pemeriksaan])
+        UC14([Tambah Obat ke Pemeriksaan])
+        UC15([Lihat Riwayat])
+        UC16([Lihat Laporan])
     end
 
-    A --> UC1
+    P --> UC1
     A --> UC2
+    D --> UC2
+    P --> UC2
+
     A --> UC3
     A --> UC4
     A --> UC5
     A --> UC6
-    A --> UC7
-    A --> UC8
-    A --> UC9
+    P --> UC7
+    P --> UC8
+    P --> UC9
     A --> UC10
     A --> UC11
-
-    U --> UC1
-    U --> UC2
-    U --> UC7
-    U --> UC8
-    U --> UC9
-    U --> UC10
-    U --> UC11
+    A --> UC12
+    D --> UC12
+    D --> UC13
+    D --> UC14
+    A --> UC15
+    D --> UC15
+    P --> UC15
+    A --> UC16
+    D --> UC16
 ```
 
 ---
 
-# 12. Diagram Alur Sistem
+# 12. Alur Kerja Sistem
+
+## 12.1 Alur Reservasi Pasien
+
+1. Pasien registrasi akun
+2. Pasien login
+3. Pasien melihat jadwal dokter
+4. Pasien memilih jadwal
+5. Pasien mengisi keluhan awal
+6. Sistem menyimpan reservasi dengan status **Menunggu Verifikasi**
+7. Admin melihat reservasi masuk
+8. Admin menyetujui atau menolak reservasi
+9. Jika disetujui, status menjadi **Dikonfirmasi**
+10. Saat pasien datang, admin melakukan **check-in**
+11. Reservasi diteruskan ke data kunjungan/antrian
+
+## 12.2 Alur Pemeriksaan
+
+1. Dokter login
+2. Dokter melihat daftar pasien yang sudah check-in
+3. Dokter membuka data pasien
+4. Dokter melihat riwayat sebelumnya
+5. Dokter mengisi hasil pemeriksaan
+6. Dokter menambahkan obat yang diberikan
+7. Sistem memvalidasi stok obat
+8. Sistem menyimpan pemeriksaan
+9. Sistem mengurangi stok obat
+10. Status kunjungan menjadi **Selesai**
+
+## 12.3 Alur Laporan
+
+1. Admin login
+2. Admin membuka menu laporan
+3. Admin memilih filter tanggal/dokter
+4. Sistem menampilkan data reservasi, kunjungan, atau obat
+5. Admin melihat hasil dalam tabel
+
+---
+
+# 13. Diagram Aktivitas Reservasi Online
 
 ```mermaid
 flowchart TD
-    Start([Mulai]) --> Open[Buka aplikasi]
-    Open --> Login[Input username & password]
-    Login --> Valid{Login valid?}
-
-    Valid -- Tidak --> Error[Pesan gagal login]
-    Error --> Login
-
-    Valid -- Ya --> Role{Role?}
-    Role -- Admin --> DashA[Dashboard Admin]
-    Role -- User --> DashU[Dashboard User]
-
-    DashA --> MenuA{Pilih menu}
-    MenuA --> AkunA[Kelola Akun]
-    MenuA --> PasienA[Kelola Pasien]
-    MenuA --> DokterA[Kelola Dokter]
-    MenuA --> ObatA[Kelola Obat]
-    MenuA --> KunjunganA[Catat Kunjungan]
-    MenuA --> PeriksaA[Catat Pemeriksaan]
-    MenuA --> RiwayatA[Lihat Riwayat]
-    MenuA --> LaporanA[Lihat Laporan]
-    MenuA --> LogoutA[Logout]
-
-    DashU --> MenuU{Pilih menu}
-    MenuU --> KunjunganU[Catat Kunjungan]
-    MenuU --> PeriksaU[Catat Pemeriksaan]
-    MenuU --> RiwayatU[Lihat Riwayat]
-    MenuU --> LaporanU[Lihat Laporan]
-    MenuU --> LogoutU[Logout]
-
-    AkunA --> DashA
-    PasienA --> DashA
-    DokterA --> DashA
-    ObatA --> DashA
-    KunjunganA --> DashA
-    PeriksaA --> DashA
-    RiwayatA --> DashA
-    LaporanA --> DashA
-    LogoutA --> End([Selesai])
-
-    KunjunganU --> DashU
-    PeriksaU --> DashU
-    RiwayatU --> DashU
-    LaporanU --> DashU
-    LogoutU --> End
+    A([Mulai]) --> B[Pasien login]
+    B --> C[Lihat jadwal dokter]
+    C --> D[Pilih dokter dan jadwal]
+    D --> E[Isi keluhan awal]
+    E --> F[Simpan reservasi]
+    F --> G[Status = Menunggu Verifikasi]
+    G --> H[Admin membuka daftar reservasi]
+    H --> I{Reservasi valid?}
+    I -- Ya --> J[Status = Dikonfirmasi]
+    I -- Tidak --> K[Status = Ditolak]
+    J --> L[Pasien datang ke klinik]
+    L --> M[Admin check-in pasien]
+    M --> N[Masuk antrian pemeriksaan]
+    K --> O([Selesai])
+    N --> O
 ```
 
 ---
 
-# 13. Diagram Aktivitas Pendaftaran sampai Obat
+# 14. Diagram Aktivitas Pemeriksaan
 
 ```mermaid
 flowchart TD
-    A([Mulai]) --> B[Login]
-    B --> C[Pilih menu kunjungan]
+    A([Mulai]) --> B[Dokter login]
+    B --> C[Lihat pasien antrian]
     C --> D[Pilih pasien]
-    D --> E[Pilih dokter]
-    E --> F[Isi keluhan awal]
-    F --> G[Simpan kunjungan]
-    G --> H[Status = Menunggu]
-
-    H --> I[Pilih kunjungan untuk diperiksa]
-    I --> J[Isi diagnosa dan tindakan]
-    J --> K[Pilih obat]
-    K --> L[Isi jumlah obat]
-    L --> M[Simpan pemeriksaan]
-    M --> N[Simpan detail obat]
-    N --> O[Kurangi stok obat]
-    O --> P[Status = Selesai]
-    P --> Q[Simpan ke riwayat]
-    Q --> R([Selesai])
+    D --> E[Lihat data pasien dan riwayat]
+    E --> F[Isi keluhan, diagnosa, tindakan]
+    F --> G{Perlu obat?}
+    G -- Ya --> H[Pilih obat]
+    H --> I[Isi jumlah dan aturan pakai]
+    I --> J[Validasi stok]
+    J --> K[Simpan detail obat]
+    K --> L[Kurangi stok]
+    G -- Tidak --> M[Simpan pemeriksaan]
+    L --> M
+    M --> N[Ubah status kunjungan = Selesai]
+    N --> O([Selesai])
 ```
 
 ---
 
-# 14. Kebutuhan Fungsional
+# 15. Kebutuhan Fungsional
 
-## 14.1 Modul Login
-- Sistem harus menerima input username dan password.
-- Sistem harus memvalidasi akun internal.
-- Sistem harus mengenali role admin atau user.
-- Sistem harus menampilkan menu sesuai role.
+## 15.1 Modul Registrasi
 
-## 14.2 Modul Akun Internal
-- Sistem harus bisa menambah akun internal.
-- Sistem harus bisa mengubah akun internal.
-- Sistem harus bisa menghapus akun internal.
-- Sistem harus bisa menonaktifkan akun.
-- Modul ini hanya dapat diakses admin.
+- Sistem harus memungkinkan pasien membuat akun baru.
+- Sistem harus memvalidasi username unik.
+- Sistem harus menyimpan akun dengan role **Pasien**.
 
-## 14.3 Modul Pasien
-- Sistem harus bisa menambah pasien.
-- Sistem harus bisa mengubah pasien.
-- Sistem harus bisa menghapus pasien.
-- Sistem harus bisa mencari pasien.
-- Sistem harus bisa menampilkan detail pasien.
+## 15.2 Modul Login
 
-## 14.4 Modul Dokter
-- Sistem harus bisa menambah dokter.
-- Sistem harus bisa mengubah dokter.
-- Sistem harus bisa menghapus dokter.
-- Sistem harus bisa mencari dokter.
-- Sistem harus bisa menampilkan detail dokter.
+- Sistem harus menerima username dan password.
+- Sistem harus memvalidasi kredensial user.
+- Sistem harus mengarahkan ke dashboard sesuai role.
+- Sistem harus menolak login yang salah.
 
-## 14.5 Modul Obat
-- Sistem harus bisa menambah obat.
-- Sistem harus bisa mengubah obat.
-- Sistem harus bisa menghapus obat.
-- Sistem harus bisa mencari obat.
-- Sistem harus bisa menampilkan stok obat.
+## 15.3 Modul Akun
 
-## 14.6 Modul Kunjungan
-- Sistem harus bisa membuat kunjungan baru.
-- Sistem harus bisa memilih pasien dan dokter.
-- Sistem harus bisa menyimpan keluhan awal.
-- Sistem harus bisa menyimpan status kunjungan.
+- Admin dapat menambah akun admin dan dokter.
+- Admin dapat mengubah status aktif/nonaktif akun.
+- Admin dapat melihat daftar seluruh akun.
 
-## 14.7 Modul Pemeriksaan
-- Sistem harus bisa memilih data kunjungan.
-- Sistem harus bisa mencatat diagnosa.
-- Sistem harus bisa mencatat tindakan atau catatan.
-- Sistem harus bisa menyimpan tanggal pemeriksaan.
-- Sistem harus bisa mengubah status kunjungan.
+## 15.4 Modul Dokter
 
-## 14.8 Modul Detail Obat
-- Sistem harus bisa mengaitkan obat dengan pemeriksaan.
-- Sistem harus bisa menyimpan jumlah obat yang diberikan.
-- Sistem harus bisa memvalidasi stok obat.
-- Sistem harus bisa mengurangi stok obat.
+- Admin dapat menambah, ubah, dan nonaktifkan data dokter.
+- Sistem harus menampilkan daftar dokter aktif.
+- Sistem harus menyimpan spesialisasi dokter.
 
-## 14.9 Modul Riwayat
-- Sistem harus bisa menampilkan riwayat pasien.
-- Sistem harus bisa menampilkan detail pemeriksaan.
-- Sistem harus bisa menampilkan daftar obat yang pernah diberikan.
+## 15.5 Modul Jadwal Dokter
 
-## 14.10 Modul Laporan
-- Sistem harus bisa menampilkan kunjungan harian.
-- Sistem harus bisa menampilkan pemeriksaan selesai.
-- Sistem harus bisa menampilkan data stok obat rendah.
-- Sistem harus bisa menampilkan total kunjungan per periode sederhana.
+- Admin dapat menambah jadwal dokter.
+- Sistem harus menyimpan kuota pasien pada tiap jadwal.
+- Pasien dapat melihat jadwal dokter yang aktif.
+- Reservasi hanya boleh dibuat pada jadwal aktif.
 
----
+## 15.6 Modul Profil Pasien
 
-# 15. Kebutuhan Non-Fungsional
+- Pasien dapat melihat dan memperbarui profilnya.
+- Sistem harus mengaitkan akun pasien dengan data pasien.
 
-- Aplikasi berjalan pada Windows.
-- Data disimpan secara lokal.
-- UI sederhana dan mudah dipahami.
-- Proses CRUD dan pencarian harus cepat.
-- Struktur program harus mudah dibagi ke beberapa anggota.
-- Relasi database harus konsisten.
-- Role-based access harus berjalan.
-- Validasi data harus mencegah input tidak valid.
+## 15.7 Modul Reservasi
 
----
+- Pasien dapat membuat reservasi.
+- Reservasi harus terhubung ke pasien dan jadwal dokter.
+- Sistem harus menyimpan keluhan awal.
+- Pasien dapat membatalkan reservasi sebelum check-in.
+- Admin dapat memverifikasi reservasi.
 
-# 16. Aturan Bisnis
+## 15.8 Modul Kunjungan
 
-1. Hanya pengguna internal yang memiliki akun yang bisa login.
-2. Setiap akun harus memiliki role Admin atau User.
-3. Admin memiliki hak akses penuh.
-4. User hanya memiliki akses operasional.
-5. Kunjungan hanya bisa dibuat jika pasien dan dokter sudah dipilih.
-6. Pemeriksaan hanya bisa dibuat jika data kunjungan sudah ada.
-7. Detail obat hanya bisa ditambahkan jika data pemeriksaan sudah ada.
-8. Jumlah obat yang diberikan tidak boleh melebihi stok.
-9. Saat detail obat disimpan, stok obat harus berkurang.
-10. Riwayat pasien terbentuk dari kunjungan yang telah memiliki pemeriksaan.
-11. Satu pasien dapat memiliki banyak kunjungan.
-12. Satu dokter dapat menangani banyak kunjungan.
-13. Satu pemeriksaan dapat memiliki banyak item obat.
+- Reservasi yang sudah check-in harus menjadi data kunjungan.
+- Sistem harus menyimpan nomor antrian sederhana.
+- Sistem harus menampilkan daftar antrian.
+
+## 15.9 Modul Pemeriksaan
+
+- Dokter dapat memilih kunjungan aktif.
+- Dokter dapat menyimpan diagnosa dan catatan tindakan.
+- Pemeriksaan harus terhubung ke kunjungan.
+
+## 15.10 Modul Obat dan Resep
+
+- Dokter dapat memilih lebih dari satu obat pada pemeriksaan.
+- Sistem harus memvalidasi stok obat.
+- Sistem harus mengurangi stok setelah resep disimpan.
+- Sistem harus menyimpan aturan pakai pada detail resep.
+
+## 15.11 Modul Riwayat
+
+- Pasien dapat melihat riwayat miliknya sendiri.
+- Dokter dapat melihat riwayat pasien yang sedang diperiksa.
+- Admin dapat melihat seluruh riwayat reservasi dan pemeriksaan.
+
+## 15.12 Modul Laporan
+
+- Admin dapat melihat laporan reservasi berdasarkan periode.
+- Admin dapat melihat jumlah pemeriksaan per dokter.
+- Admin dapat melihat obat dengan stok rendah.
 
 ---
 
-# 17. Validasi Data
+# 16. Kebutuhan Non-Fungsional
 
-- username tidak boleh kosong
-- password tidak boleh kosong
-- nama pasien tidak boleh kosong
-- tanggal lahir pasien harus valid
-- nama dokter tidak boleh kosong
-- nama obat tidak boleh kosong
-- stok obat tidak boleh negatif
-- pasien dan dokter wajib dipilih saat membuat kunjungan
-- diagnosa tidak boleh kosong saat menyimpan pemeriksaan
-- jumlah obat harus lebih dari 0
-- jumlah obat tidak boleh lebih besar dari stok tersedia
+- Sistem berjalan pada Windows.
+- Tampilan sederhana, rapi, dan konsisten.
+- Database lokal harus stabil untuk CRUD.
+- Hak akses role harus berjalan.
+- Waktu respon pencarian data harus cepat.
+- Data wajib tervalidasi sebelum disimpan.
+- Struktur proyek harus mudah dibagi ke anggota kelompok.
+- Warna UI menggunakan tone biru muda agar terlihat bersih dan profesional.
 
 ---
 
-# 18. Use Case Specification
+# 17. Aturan Bisnis
 
-## 18.1 Use Case — Login
-
-| Elemen | Deskripsi |
-|---|---|
-| Nama | Login |
-| Aktor | Admin, User |
-| Tujuan | Masuk ke dalam sistem |
-| Prasyarat | Memiliki akun aktif |
-| Alur Utama | 1. Pengguna membuka aplikasi. 2. Mengisi username dan password. 3. Sistem memvalidasi data. 4. Sistem menampilkan dashboard sesuai role. |
-| Alur Alternatif | Jika username/password salah, sistem menampilkan pesan gagal login. |
-| Hasil | Pengguna berhasil masuk ke sistem |
-
----
-
-## 18.2 Use Case — Kelola Pasien
-
-| Elemen | Deskripsi |
-|---|---|
-| Nama | Kelola Pasien |
-| Aktor | Admin |
-| Tujuan | Mengelola data pasien |
-| Prasyarat | Admin sudah login |
-| Alur Utama | 1. Admin membuka menu pasien. 2. Admin menambah, mengubah, atau menghapus data. 3. Sistem menyimpan perubahan. |
-| Hasil | Data pasien tersimpan atau diperbarui |
+1. Setiap akun hanya memiliki satu role.
+2. Role sistem adalah: Admin, Dokter, dan Pasien.
+3. Hanya pasien yang bisa membuat reservasi online.
+4. Reservasi hanya dapat dibuat pada jadwal dokter yang aktif.
+5. Reservasi harus diverifikasi admin sebelum dianggap valid.
+6. Pasien yang tidak diverifikasi tidak masuk antrian.
+7. Pasien yang sudah check-in akan berubah menjadi data kunjungan aktif.
+8. Pemeriksaan hanya dapat dilakukan untuk kunjungan yang aktif.
+9. Hanya dokter yang dapat mengisi hasil pemeriksaan.
+10. Obat hanya dapat ditambahkan pada pemeriksaan yang sedang dibuat.
+11. Stok obat harus cukup sebelum resep disimpan.
+12. Setelah resep tersimpan, stok obat berkurang.
+13. Pasien hanya dapat melihat data miliknya sendiri.
+14. Admin dapat melihat semua data operasional.
+15. Dokter dapat melihat data pasien yang relevan untuk pemeriksaan.
 
 ---
 
-## 18.3 Use Case — Catat Kunjungan
+# 18. Validasi Data
 
-| Elemen | Deskripsi |
-|---|---|
-| Nama | Catat Kunjungan |
-| Aktor | Admin, User |
-| Tujuan | Mendaftarkan pasien yang datang ke klinik |
-| Prasyarat | Data pasien dan dokter tersedia |
-| Alur Utama | 1. Pengguna membuka menu kunjungan. 2. Memilih pasien. 3. Memilih dokter. 4. Mengisi keluhan awal. 5. Sistem menyimpan kunjungan. |
-| Hasil | Kunjungan tersimpan dengan status Menunggu |
-
----
-
-## 18.4 Use Case — Catat Pemeriksaan
-
-| Elemen | Deskripsi |
-|---|---|
-| Nama | Catat Pemeriksaan |
-| Aktor | Admin, User |
-| Tujuan | Menyimpan hasil pemeriksaan pasien |
-| Prasyarat | Data kunjungan tersedia |
-| Alur Utama | 1. Pengguna memilih kunjungan. 2. Mengisi diagnosa dan tindakan. 3. Menyimpan pemeriksaan. |
-| Hasil | Data pemeriksaan tersimpan |
+- Username tidak boleh kosong.
+- Password tidak boleh kosong.
+- Username harus unik.
+- Nama pasien wajib diisi.
+- Tanggal lahir harus valid.
+- Nomor telepon harus valid.
+- Jadwal dokter harus aktif agar bisa dipilih.
+- Kuota jadwal tidak boleh terlampaui.
+- Keluhan awal tidak boleh kosong saat reservasi.
+- Diagnosa tidak boleh kosong saat pemeriksaan disimpan.
+- Jumlah obat harus lebih dari 0.
+- Jumlah obat tidak boleh melebihi stok.
+- Pasien tidak boleh check-in jika reservasi belum dikonfirmasi.
 
 ---
 
-## 18.5 Use Case — Catat Obat yang Diberikan
+# 19. Use Case Specification
 
-| Elemen | Deskripsi |
-|---|---|
-| Nama | Catat Detail Obat |
-| Aktor | Admin, User |
-| Tujuan | Menyimpan obat yang diberikan kepada pasien |
-| Prasyarat | Pemeriksaan sudah ada dan stok tersedia |
-| Alur Utama | 1. Pengguna memilih obat. 2. Mengisi jumlah. 3. Sistem memvalidasi stok. 4. Sistem menyimpan detail obat dan mengurangi stok. |
-| Hasil | Data obat tersimpan pada pemeriksaan |
+## 19.1 Use Case — Registrasi Pasien
+
+| Elemen     | Deskripsi                                                                                                                                          |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Nama       | Registrasi Pasien                                                                                                                                  |
+| Aktor      | Pasien                                                                                                                                             |
+| Tujuan     | Membuat akun pasien baru                                                                                                                           |
+| Prasyarat  | Belum memiliki akun                                                                                                                                |
+| Alur Utama | 1. Pasien membuka form registrasi. 2. Pasien mengisi data akun dan profil. 3. Sistem memvalidasi data. 4. Sistem menyimpan akun dan profil pasien. |
+| Hasil      | Akun pasien berhasil dibuat                                                                                                                        |
+
+## 19.2 Use Case — Buat Reservasi Online
+
+| Elemen     | Deskripsi                                                                                                                                          |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Nama       | Buat Reservasi Online                                                                                                                              |
+| Aktor      | Pasien                                                                                                                                             |
+| Tujuan     | Memesan slot pemeriksaan sebelum datang ke klinik                                                                                                  |
+| Prasyarat  | Pasien login, jadwal dokter tersedia                                                                                                               |
+| Alur Utama | 1. Pasien membuka jadwal dokter. 2. Memilih jadwal. 3. Mengisi keluhan awal. 4. Menyimpan reservasi. 5. Sistem memberi status Menunggu Verifikasi. |
+| Hasil      | Reservasi tersimpan                                                                                                                                |
+
+## 19.3 Use Case — Verifikasi Reservasi
+
+| Elemen     | Deskripsi                                                                                                                                      |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| Nama       | Verifikasi Reservasi                                                                                                                           |
+| Aktor      | Admin                                                                                                                                          |
+| Tujuan     | Menyetujui atau menolak reservasi pasien                                                                                                       |
+| Prasyarat  | Reservasi masuk tersedia                                                                                                                       |
+| Alur Utama | 1. Admin membuka daftar reservasi. 2. Admin meninjau detail reservasi. 3. Admin memilih setujui/tolak. 4. Sistem memperbarui status reservasi. |
+| Hasil      | Status reservasi berubah                                                                                                                       |
+
+## 19.4 Use Case — Check-in Pasien
+
+| Elemen     | Deskripsi                                                                                                             |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- |
+| Nama       | Check-in Pasien                                                                                                       |
+| Aktor      | Admin                                                                                                                 |
+| Tujuan     | Mendaftarkan pasien hadir di klinik                                                                                   |
+| Prasyarat  | Reservasi sudah dikonfirmasi                                                                                          |
+| Alur Utama | 1. Admin memilih reservasi terkonfirmasi. 2. Admin menekan tombol check-in. 3. Sistem membuat data kunjungan/antrian. |
+| Hasil      | Pasien masuk daftar antrian                                                                                           |
+
+## 19.5 Use Case — Isi Pemeriksaan
+
+| Elemen     | Deskripsi                                                                                                                               |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| Nama       | Isi Pemeriksaan                                                                                                                         |
+| Aktor      | Dokter                                                                                                                                  |
+| Tujuan     | Menyimpan hasil pemeriksaan pasien                                                                                                      |
+| Prasyarat  | Pasien sudah check-in dan masuk antrian                                                                                                 |
+| Alur Utama | 1. Dokter memilih pasien. 2. Dokter melihat data dan riwayat. 3. Dokter mengisi diagnosa dan tindakan. 4. Dokter menyimpan pemeriksaan. |
+| Hasil      | Pemeriksaan tersimpan                                                                                                                   |
+
+## 19.6 Use Case — Tambah Obat ke Pemeriksaan
+
+| Elemen     | Deskripsi                                                                                                                                           |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Nama       | Tambah Obat ke Pemeriksaan                                                                                                                          |
+| Aktor      | Dokter                                                                                                                                              |
+| Tujuan     | Menambahkan obat yang diberikan kepada pasien                                                                                                       |
+| Prasyarat  | Pemeriksaan sedang dibuat, stok obat tersedia                                                                                                       |
+| Alur Utama | 1. Dokter memilih obat. 2. Dokter mengisi jumlah dan aturan pakai. 3. Sistem memvalidasi stok. 4. Sistem menyimpan detail obat dan mengurangi stok. |
+| Hasil      | Obat tersimpan pada pemeriksaan                                                                                                                     |
+
+## 19.7 Use Case — Lihat Riwayat
+
+| Elemen     | Deskripsi                                                                                           |
+| ---------- | --------------------------------------------------------------------------------------------------- |
+| Nama       | Lihat Riwayat                                                                                       |
+| Aktor      | Admin, Dokter, Pasien                                                                               |
+| Tujuan     | Melihat riwayat yang relevan sesuai hak akses                                                       |
+| Prasyarat  | Data riwayat tersedia                                                                               |
+| Alur Utama | 1. Pengguna membuka menu riwayat. 2. Sistem menampilkan daftar riwayat. 3. Pengguna membuka detail. |
+| Hasil      | Riwayat dapat dilihat                                                                               |
 
 ---
 
-## 18.6 Use Case — Lihat Riwayat Pasien
+# 20. Desain Database
 
-| Elemen | Deskripsi |
-|---|---|
-| Nama | Lihat Riwayat Pasien |
-| Aktor | Admin, User |
-| Tujuan | Menampilkan riwayat kunjungan dan pemeriksaan pasien |
-| Prasyarat | Data pasien dan pemeriksaan tersedia |
-| Alur Utama | 1. Pengguna mencari pasien. 2. Sistem menampilkan daftar riwayat. 3. Pengguna membuka detail. |
-| Hasil | Riwayat pasien dapat dilihat |
+## Minimal 5 tabel berelasi — versi ini menggunakan **9 tabel berelasi**
 
----
+Agar seluruh fitur benar-benar bisa “jalan semua” secara logis, berikut struktur database yang disarankan.
 
-# 19. Desain Database  
-## Minimal 5 tabel berelasi — versi ini memakai **7 tabel berelasi**
+## Daftar Tabel
 
-### Daftar Tabel
 1. `users`
 2. `patients`
 3. `doctors`
-4. `medicines`
-5. `visits`
-6. `examinations`
-7. `examination_medicines`
+4. `doctor_schedules`
+5. `reservations`
+6. `visits`
+7. `examinations`
+8. `medicines`
+9. `prescription_details`
 
-> Dengan 7 tabel ini, seluruh fitur inti bisa berjalan saling terhubung.
+## 20.1 Tabel `users`
 
----
-
-## 19.1 Tabel `users`
-Menyimpan akun internal.
+Menyimpan akun login semua role.
 
 Kolom:
+
 - `UserId` (PK)
-- `Name`
 - `Username`
 - `Password`
 - `Role`
 - `IsActive`
+- `CreatedAt`
 
----
+### Role pada users
 
-## 19.2 Tabel `patients`
-Menyimpan data pasien.
+- Admin
+- Dokter
+- Pasien
+
+## 20.2 Tabel `patients`
+
+Menyimpan profil pasien.
 
 Kolom:
+
 - `PatientId` (PK)
-- `Name`
+- `UserId` (FK ke users)
+- `FullName`
 - `BirthDate`
 - `Gender`
 - `Address`
 - `PhoneNumber`
 
----
+> Relasi ini memungkinkan pasien login dengan role Pasien, sekaligus punya data profil terpisah yang lebih lengkap.
 
-## 19.3 Tabel `doctors`
-Menyimpan data dokter.
+## 20.3 Tabel `doctors`
+
+Menyimpan profil dokter.
 
 Kolom:
+
 - `DoctorId` (PK)
-- `Name`
+- `UserId` (FK ke users)
+- `FullName`
 - `Specialization`
 - `PhoneNumber`
-- `PracticeSchedule`
+- `IsActive`
 
----
+> Dokter juga punya akun login sehingga dihubungkan ke `users`.
 
-## 19.4 Tabel `medicines`
-Menyimpan data obat.
+## 20.4 Tabel `doctor_schedules`
 
-Kolom:
-- `MedicineId` (PK)
-- `MedicineName`
-- `Type`
-- `Stock`
-- `Unit`
-- `UsageInstruction`
-
----
-
-## 19.5 Tabel `visits`
-Menyimpan data kunjungan pasien.
+Menyimpan jadwal praktik dokter.
 
 Kolom:
-- `VisitId` (PK)
-- `PatientId` (FK)
-- `DoctorId` (FK)
-- `VisitDate`
+
+- `ScheduleId` (PK)
+- `DoctorId` (FK ke doctors)
+- `ScheduleDate`
+- `StartTime`
+- `EndTime`
+- `Quota`
+- `IsActive`
+
+## 20.5 Tabel `reservations`
+
+Menyimpan reservasi online dari pasien.
+
+Kolom:
+
+- `ReservationId` (PK)
+- `PatientId` (FK ke patients)
+- `ScheduleId` (FK ke doctor_schedules)
 - `Complaint`
-- `Status`
+- `ReservationStatus`
+- `CreatedAt`
 
----
+## 20.6 Tabel `visits`
 
-## 19.6 Tabel `examinations`
-Menyimpan hasil pemeriksaan.
+Menyimpan data kunjungan/check-in pasien yang benar-benar datang.
 
 Kolom:
+
+- `VisitId` (PK)
+- `ReservationId` (FK ke reservations, nullable bila ingin dukung walk-in di masa depan)
+- `QueueNumber`
+- `CheckInTime`
+- `VisitStatus`
+
+> Walaupun fokus utama reservasi online, tabel `visits` penting agar proses operasional hari H tetap terpisah dari reservasi.
+
+## 20.7 Tabel `examinations`
+
+Menyimpan hasil pemeriksaan dokter.
+
+Kolom:
+
 - `ExaminationId` (PK)
-- `VisitId` (FK)
+- `VisitId` (FK ke visits)
+- `DoctorId` (FK ke doctors)
 - `ExaminationDate`
+- `CurrentComplaint`
 - `Diagnosis`
 - `TreatmentNotes`
 
----
+## 20.8 Tabel `medicines`
 
-## 19.7 Tabel `examination_medicines`
-Tabel detail/bridge antara pemeriksaan dan obat.
+Menyimpan master data obat.
 
 Kolom:
-- `DetailId` (PK)
-- `ExaminationId` (FK)
-- `MedicineId` (FK)
+
+- `MedicineId` (PK)
+- `MedicineName`
+- `MedicineType`
+- `Stock`
+- `Unit`
+- `DefaultInstruction`
+- `IsActive`
+
+## 20.9 Tabel `prescription_details`
+
+Menyimpan detail obat yang diberikan pada suatu pemeriksaan.
+
+Kolom:
+
+- `PrescriptionDetailId` (PK)
+- `ExaminationId` (FK ke examinations)
+- `MedicineId` (FK ke medicines)
 - `Quantity`
 - `InstructionNote`
 
 ---
 
-# 20. ERD
+# 21. ERD
 
 ```mermaid
 erDiagram
     USERS {
         int UserId PK
-        string Name
         string Username
         string Password
         string Role
         bool IsActive
+        datetime CreatedAt
     }
 
     PATIENTS {
         int PatientId PK
-        string Name
+        int UserId FK
+        string FullName
         date BirthDate
         string Gender
         string Address
@@ -866,582 +1068,866 @@ erDiagram
 
     DOCTORS {
         int DoctorId PK
-        string Name
+        int UserId FK
+        string FullName
         string Specialization
         string PhoneNumber
-        string PracticeSchedule
+        bool IsActive
     }
 
-    MEDICINES {
-        int MedicineId PK
-        string MedicineName
-        string Type
-        int Stock
-        string Unit
-        string UsageInstruction
+    DOCTOR_SCHEDULES {
+        int ScheduleId PK
+        int DoctorId FK
+        date ScheduleDate
+        time StartTime
+        time EndTime
+        int Quota
+        bool IsActive
+    }
+
+    RESERVATIONS {
+        int ReservationId PK
+        int PatientId FK
+        int ScheduleId FK
+        string Complaint
+        string ReservationStatus
+        datetime CreatedAt
     }
 
     VISITS {
         int VisitId PK
-        int PatientId FK
-        int DoctorId FK
-        date VisitDate
-        string Complaint
-        string Status
+        int ReservationId FK
+        int QueueNumber
+        datetime CheckInTime
+        string VisitStatus
     }
 
     EXAMINATIONS {
         int ExaminationId PK
         int VisitId FK
-        date ExaminationDate
+        int DoctorId FK
+        datetime ExaminationDate
+        string CurrentComplaint
         string Diagnosis
         string TreatmentNotes
     }
 
-    EXAMINATION_MEDICINES {
-        int DetailId PK
+    MEDICINES {
+        int MedicineId PK
+        string MedicineName
+        string MedicineType
+        int Stock
+        string Unit
+        string DefaultInstruction
+        bool IsActive
+    }
+
+    PRESCRIPTION_DETAILS {
+        int PrescriptionDetailId PK
         int ExaminationId FK
         int MedicineId FK
         int Quantity
         string InstructionNote
     }
 
-    PATIENTS ||--o{ VISITS : has
-    DOCTORS ||--o{ VISITS : handles
+    USERS ||--o| PATIENTS : owns
+    USERS ||--o| DOCTORS : owns
+    PATIENTS ||--o{ RESERVATIONS : makes
+    DOCTORS ||--o{ DOCTOR_SCHEDULES : has
+    DOCTOR_SCHEDULES ||--o{ RESERVATIONS : used_by
+    RESERVATIONS ||--o| VISITS : becomes
     VISITS ||--o| EXAMINATIONS : results_in
-    EXAMINATIONS ||--o{ EXAMINATION_MEDICINES : contains
-    MEDICINES ||--o{ EXAMINATION_MEDICINES : used_in
+    DOCTORS ||--o{ EXAMINATIONS : handles
+    EXAMINATIONS ||--o{ PRESCRIPTION_DETAILS : contains
+    MEDICINES ||--o{ PRESCRIPTION_DETAILS : prescribed_in
 ```
 
 ---
 
-# 21. OOP Design
+# 22. OOP Design
 
-Aplikasi ini sangat cocok untuk pendekatan OOP karena data di dunia nyata bisa direpresentasikan langsung menjadi object.
+Sistem ini sangat cocok untuk pendekatan OOP karena setiap entitas penting pada dunia nyata bisa direpresentasikan menjadi object.
 
-## 21.1 Encapsulation
-Data dan aturan validasi dibungkus di dalam class.
+## 22.1 Encapsulation
 
-### Contoh penerapan
-- `Stock` pada class `Medicine` tidak boleh negatif
-- `Status` pada class `Visit` hanya boleh berisi status tertentu
-- `Quantity` pada detail obat tidak boleh nol atau negatif
-
----
-
-## 21.2 Inheritance
-Inheritance dipakai untuk akun internal.
-
-### Rancangan
-- `Account` sebagai parent class
-- `Admin : Account`
-- `User : Account`
-
-Selain itu bisa juga digunakan:
-- `Person` sebagai parent class
-- `Patient : Person`
-- `Doctor : Person`
-
-Dengan pendekatan ini, atribut umum seperti nama, alamat, dan nomor telepon tidak perlu ditulis berulang.
-
----
-
-## 21.3 Polymorphism
-Method yang sama dapat memiliki perilaku berbeda sesuai object.
+Encapsulation digunakan untuk membungkus data dan membatasi perubahan langsung.
 
 ### Contoh
-- `GetRoleName()` pada `Admin` mengembalikan `"Admin"`
-- `GetRoleName()` pada `User` mengembalikan `"User"`
 
-Atau method:
-- `GetDisplayInfo()` pada `Patient` dan `Doctor` menghasilkan format berbeda.
+- `Stock` pada class `Medicine` tidak boleh negatif.
+- `ReservationStatus` pada `Reservation` hanya boleh berisi status yang valid.
+- `Quantity` pada resep tidak boleh nol atau negatif.
 
----
+## 22.2 Inheritance
 
-## 21.4 Abstraction
-Abstraction diterapkan melalui:
-- abstract class
-- interface service/repository
+Inheritance digunakan untuk menghindari duplikasi atribut.
+
+### Pendekatan yang Disarankan
+
+Gunakan dua level inheritance yang sederhana:
+
+#### A. Untuk akun login
+
+- `UserAccount` _(abstract)_
+- `Admin : UserAccount`
+- `DoctorAccount : UserAccount`
+- `PatientAccount : UserAccount`
+
+#### B. Untuk profil manusia
+
+- `Person` _(abstract)_
+- `DoctorProfile : Person`
+- `PatientProfile : Person`
+
+Dengan ini:
+
+- atribut umum seperti `Username`, `Password`, `Role` diletakkan di `UserAccount`
+- atribut umum seperti `FullName`, `PhoneNumber`, `Address` diletakkan di `Person`
+
+## 22.3 Polymorphism
+
+Polymorphism digunakan ketika method yang sama menghasilkan perilaku berbeda pada subclass.
 
 ### Contoh
+
+- `GetDashboardMenu()` pada `Admin`, `DoctorAccount`, dan `PatientAccount`
+- `GetRoleName()` pada tiap turunan `UserAccount`
+
+## 22.4 Abstraction
+
+Abstraction digunakan melalui:
+
+- abstract class,
+- interface service/repository.
+
+### Contoh interface
+
 - `ICrudService<T>`
-- `IReportService`
-- `IDataRepository<T>`
+- `IRepository<T>`
+- `IAuthService`
+- `IReservationService`
+
+## 22.5 Association
+
+Association tampak pada relasi:
+
+- pasien membuat banyak reservasi,
+- dokter punya banyak jadwal,
+- dokter menangani banyak pemeriksaan,
+- pemeriksaan berhubungan dengan kunjungan dan obat.
+
+## 22.6 Composition
+
+Composition tampak pada:
+
+- `Examination` memiliki kumpulan `PrescriptionDetail`
+- tanpa pemeriksaan, detail resep tidak bermakna
 
 ---
 
-## 21.5 Association
-Relasi antar object:
-- `Patient` memiliki banyak `Visit`
-- `Doctor` menangani banyak `Visit`
-- `Visit` menghasilkan satu `Examination`
+# 23. Daftar Class Utama
 
----
+## 23.1 UserAccount (Abstract)
 
-## 21.6 Composition
-`Examination` terdiri dari kumpulan `ExaminationMedicine`.
-
-Artinya, detail obat adalah bagian penting dari pemeriksaan dan terkait langsung dengan siklus hidup pemeriksaan.
-
----
-
-# 22. Daftar Class Utama
-
-## 22.1 Account (Abstract)
 Atribut:
+
 - Id
-- Name
 - Username
 - Password
+- Role
 - IsActive
 
 Method:
-- `GetRoleName()`
 
-## 22.2 Admin : Account
+- `GetRoleName()`
+- `CanAccess(featureName)`
+
+## 23.2 Admin : UserAccount
+
 Method:
-- `GetRoleName()`
 
-## 22.3 User : Account
+- `GetDashboardMenu()`
+
+## 23.3 DoctorAccount : UserAccount
+
 Method:
-- `GetRoleName()`
 
-## 22.4 Person (Abstract)
+- `GetDashboardMenu()`
+
+## 23.4 PatientAccount : UserAccount
+
+Method:
+
+- `GetDashboardMenu()`
+
+## 23.5 Person (Abstract)
+
 Atribut:
-- Id
-- Name
-- Address
+
+- FullName
 - PhoneNumber
+- Address
 
 Method:
+
 - `GetDisplayInfo()`
 
-## 22.5 Patient : Person
+## 23.6 DoctorProfile : Person
+
 Atribut tambahan:
+
+- Specialization
+
+Method:
+
+- `GetDisplayInfo()`
+
+## 23.7 PatientProfile : Person
+
+Atribut tambahan:
+
 - BirthDate
 - Gender
 
 Method:
+
 - `CalculateAge()`
 
-## 22.6 Doctor : Person
-Atribut tambahan:
-- Specialization
-- PracticeSchedule
+## 23.8 DoctorSchedule
+
+Atribut:
+
+- ScheduleId
+- Doctor
+- ScheduleDate
+- StartTime
+- EndTime
+- Quota
+- IsActive
 
 Method:
-- `GetDisplayInfo()`
 
-## 22.7 Medicine
+- `IsSlotAvailable()`
+
+## 23.9 Reservation
+
 Atribut:
+
+- ReservationId
+- Patient
+- Schedule
+- Complaint
+- ReservationStatus
+- CreatedAt
+
+Method:
+
+- `Confirm()`
+- `Reject()`
+- `CancelByPatient()`
+- `CheckIn()`
+
+## 23.10 Visit
+
+Atribut:
+
+- VisitId
+- Reservation
+- QueueNumber
+- CheckInTime
+- VisitStatus
+
+Method:
+
+- `StartExamination()`
+- `FinishVisit()`
+
+## 23.11 Examination
+
+Atribut:
+
+- ExaminationId
+- Visit
+- Doctor
+- ExaminationDate
+- CurrentComplaint
+- Diagnosis
+- TreatmentNotes
+- List<PrescriptionDetail>
+
+Method:
+
+- `AddPrescription()`
+- `SaveResult()`
+
+## 23.12 Medicine
+
+Atribut:
+
 - MedicineId
 - MedicineName
-- Type
+- MedicineType
 - Stock
 - Unit
-- UsageInstruction
+- DefaultInstruction
 
 Method:
+
 - `ReduceStock(int qty)`
 - `AddStock(int qty)`
 
-## 22.8 Visit
+## 23.13 PrescriptionDetail
+
 Atribut:
-- VisitId
-- Patient
-- Doctor
-- VisitDate
-- Complaint
-- Status
 
-Method:
-- `ChangeStatus(string newStatus)`
-
-## 22.9 Examination
-Atribut:
-- ExaminationId
-- Visit
-- ExaminationDate
-- Diagnosis
-- TreatmentNotes
-- List<ExaminationMedicine>
-
-Method:
-- `AddMedicineItem()`
-- `SaveResult()`
-
-## 22.10 ExaminationMedicine
-Atribut:
-- DetailId
+- PrescriptionDetailId
 - Examination
 - Medicine
 - Quantity
 - InstructionNote
 
 Method:
+
 - `ValidateQuantity()`
 
 ---
 
-# 23. Diagram Class
+# 24. Diagram Class
 
 ```mermaid
 classDiagram
-    class Account {
+    class UserAccount {
         <<abstract>>
         +int Id
-        +string Name
         +string Username
         +string Password
+        +string Role
         +bool IsActive
         +GetRoleName()
+        +CanAccess(featureName)
     }
 
     class Admin {
-        +GetRoleName()
+        +GetDashboardMenu()
     }
 
-    class User {
-        +GetRoleName()
+    class DoctorAccount {
+        +GetDashboardMenu()
+    }
+
+    class PatientAccount {
+        +GetDashboardMenu()
     }
 
     class Person {
         <<abstract>>
-        +int Id
-        +string Name
-        +string Address
+        +string FullName
         +string PhoneNumber
+        +string Address
         +GetDisplayInfo()
     }
 
-    class Patient {
+    class DoctorProfile {
+        +string Specialization
+        +GetDisplayInfo()
+    }
+
+    class PatientProfile {
         +DateTime BirthDate
         +string Gender
         +CalculateAge()
     }
 
-    class Doctor {
-        +string Specialization
-        +string PracticeSchedule
-        +GetDisplayInfo()
+    class DoctorSchedule {
+        +int ScheduleId
+        +DateTime ScheduleDate
+        +Time StartTime
+        +Time EndTime
+        +int Quota
+        +bool IsActive
+        +IsSlotAvailable()
     }
 
-    class Medicine {
-        +int MedicineId
-        +string MedicineName
-        +string Type
-        +int Stock
-        +string Unit
-        +string UsageInstruction
-        +ReduceStock(int qty)
-        +AddStock(int qty)
+    class Reservation {
+        +int ReservationId
+        +string Complaint
+        +string ReservationStatus
+        +DateTime CreatedAt
+        +Confirm()
+        +Reject()
+        +CancelByPatient()
+        +CheckIn()
     }
 
     class Visit {
         +int VisitId
-        +DateTime VisitDate
-        +string Complaint
-        +string Status
-        +ChangeStatus(string newStatus)
+        +int QueueNumber
+        +DateTime CheckInTime
+        +string VisitStatus
+        +StartExamination()
+        +FinishVisit()
     }
 
     class Examination {
         +int ExaminationId
         +DateTime ExaminationDate
+        +string CurrentComplaint
         +string Diagnosis
         +string TreatmentNotes
-        +AddMedicineItem()
+        +AddPrescription()
         +SaveResult()
     }
 
-    class ExaminationMedicine {
-        +int DetailId
+    class Medicine {
+        +int MedicineId
+        +string MedicineName
+        +string MedicineType
+        +int Stock
+        +string Unit
+        +string DefaultInstruction
+        +ReduceStock(int qty)
+        +AddStock(int qty)
+    }
+
+    class PrescriptionDetail {
+        +int PrescriptionDetailId
         +int Quantity
         +string InstructionNote
         +ValidateQuantity()
     }
 
-    class ICrudService~T~ {
+    class IRepository~T~ {
         <<interface>>
-        +Tambah(T data)
-        +Ubah(T data)
-        +Hapus(int id)
-        +AmbilSemua()
-    }
-
-    class IDataRepository~T~ {
-        <<interface>>
-        +Insert(T data)
-        +Update(T data)
+        +Insert(T entity)
+        +Update(T entity)
         +Delete(int id)
         +GetById(int id)
         +GetAll()
     }
 
-    Account <|-- Admin
-    Account <|-- User
-    Person <|-- Patient
-    Person <|-- Doctor
+    class ICrudService~T~ {
+        <<interface>>
+        +Tambah(T entity)
+        +Ubah(T entity)
+        +Hapus(int id)
+        +AmbilSemua()
+    }
 
-    Patient "1" --> "0..*" Visit : has
-    Doctor "1" --> "0..*" Visit : handles
+    UserAccount <|-- Admin
+    UserAccount <|-- DoctorAccount
+    UserAccount <|-- PatientAccount
+
+    Person <|-- DoctorProfile
+    Person <|-- PatientProfile
+
+    DoctorProfile "1" --> "0..*" DoctorSchedule : has
+    PatientProfile "1" --> "0..*" Reservation : makes
+    DoctorSchedule "1" --> "0..*" Reservation : selected_in
+    Reservation "1" --> "0..1" Visit : becomes
     Visit "1" --> "0..1" Examination : results_in
-    Examination "1" *-- "0..*" ExaminationMedicine : contains
-    ExaminationMedicine --> Medicine : references
+    DoctorProfile "1" --> "0..*" Examination : handles
+    Examination "1" *-- "0..*" PrescriptionDetail : contains
+    PrescriptionDetail --> Medicine : uses
 ```
 
 ---
 
-# 24. Diagram Sequence — Login
+# 25. Diagram Sequence — Reservasi Online
 
 ```mermaid
 sequenceDiagram
-    actor P as Pengguna
-    participant F as FormLogin
-    participant S as AuthService
-    participant R as UserRepository
+    actor P as Pasien
+    participant F as FormReservasi
+    participant S as ReservationService
+    participant Sch as ScheduleRepository
+    participant R as ReservationRepository
     participant DB as Database
 
-    P->>F: Input username & password
-    F->>S: Login(username, password)
-    S->>R: GetByUsername(username)
-    R->>DB: Query user
-    DB-->>R: Data user
-    R-->>S: Data user
-    S->>S: Validasi password & role
-    S-->>F: Hasil login
-    F-->>P: Dashboard sesuai role
+    P->>F: Pilih dokter & jadwal
+    P->>F: Isi keluhan awal
+    F->>S: CreateReservation(data)
+    S->>Sch: CheckScheduleAvailability(scheduleId)
+    Sch->>DB: Query kuota & jadwal aktif
+    DB-->>Sch: Data jadwal
+    Sch-->>S: Tersedia
+    S->>R: Insert(reservation)
+    R->>DB: Simpan reservasi
+    DB-->>R: OK
+    R-->>S: OK
+    S-->>F: Status = Menunggu Verifikasi
+    F-->>P: Tampilkan sukses
 ```
 
 ---
 
-# 25. Diagram Sequence — Kunjungan sampai Pemeriksaan
+# 26. Diagram Sequence — Verifikasi dan Check-in
 
 ```mermaid
 sequenceDiagram
-    actor P as Pengguna
-    participant FK as FormKunjungan
-    participant VS as VisitService
-    participant VR as VisitRepository
-    participant FP as FormPemeriksaan
-    participant ES as ExaminationService
+    actor A as Admin
+    participant F as FormReservasiAdmin
+    participant S as ReservationService
+    participant R as ReservationRepository
+    participant V as VisitRepository
+    participant DB as Database
+
+    A->>F: Buka reservasi masuk
+    F->>S: ConfirmReservation(reservationId)
+    S->>R: Update status = Dikonfirmasi
+    R->>DB: Update reservation
+    DB-->>R: OK
+    R-->>S: OK
+    S-->>F: Reservasi dikonfirmasi
+
+    A->>F: Klik Check-in
+    F->>S: CheckInReservation(reservationId)
+    S->>V: CreateVisit(reservationId)
+    V->>DB: Insert visit + queue number
+    DB-->>V: OK
+    V-->>S: Visit created
+    S->>R: Update status = Check-in
+    R->>DB: Update reservation
+    DB-->>R: OK
+    S-->>F: Pasien masuk antrian
+```
+
+---
+
+# 27. Diagram Sequence — Pemeriksaan dan Resep
+
+```mermaid
+sequenceDiagram
+    actor D as Dokter
+    participant F as FormPemeriksaan
+    participant E as ExaminationService
     participant ER as ExaminationRepository
     participant MR as MedicineRepository
+    participant PR as PrescriptionRepository
     participant DB as Database
 
-    P->>FK: Input pasien, dokter, keluhan
-    FK->>VS: SimpanKunjungan(data)
-    VS->>VR: Insert(kunjungan)
-    VR->>DB: Simpan visit
-    DB-->>VR: OK
-    VR-->>VS: OK
-    VS-->>FK: Status Menunggu
-
-    P->>FP: Pilih kunjungan
-    FP->>ES: SimpanPemeriksaan(data)
-    ES->>ER: Insert(examination)
+    D->>F: Pilih pasien dari antrian
+    D->>F: Isi diagnosa & tindakan
+    F->>E: SaveExamination(data)
+    E->>ER: Insert(examination)
     ER->>DB: Simpan examination
     DB-->>ER: OK
 
-    FP->>ES: Tambah detail obat
-    ES->>MR: Cek stok obat
+    D->>F: Tambah obat
+    F->>E: AddPrescription(detail)
+    E->>MR: CheckStock(medicineId, quantity)
     MR->>DB: Query stock
-    DB-->>MR: Stock tersedia
-    ES->>DB: Simpan detail obat
-    ES->>DB: Update stok obat
-    ES->>DB: Update status visit = Selesai
-    ES-->>FP: Berhasil
-    FP-->>P: Tampilkan sukses
+    DB-->>MR: Stok tersedia
+    E->>PR: Insert prescription detail
+    PR->>DB: Simpan detail resep
+    DB-->>PR: OK
+    E->>MR: ReduceStock(medicineId, quantity)
+    MR->>DB: Update stock
+    DB-->>MR: OK
+    E->>DB: Update visit status = Selesai
+    E-->>F: Pemeriksaan berhasil disimpan
 ```
 
 ---
 
-# 26. Struktur Arsitektur Sederhana
+# 28. Diagram Status Reservasi
+
+```mermaid
+stateDiagram-v2
+    [*] --> MenungguVerifikasi
+    MenungguVerifikasi --> Dikonfirmasi : Admin menyetujui
+    MenungguVerifikasi --> Ditolak : Admin menolak
+    MenungguVerifikasi --> Dibatalkan : Pasien membatalkan
+    Dikonfirmasi --> CheckIn : Admin check-in pasien
+    Dikonfirmasi --> Dibatalkan : Pasien membatalkan sebelum hadir
+    CheckIn --> Selesai : Pemeriksaan selesai
+    Ditolak --> [*]
+    Dibatalkan --> [*]
+    Selesai --> [*]
+```
+
+---
+
+# 29. Struktur Arsitektur yang Disarankan
 
 ```text
-KlinikSehatDesktop/
+KlinikSehat/
 ├── Forms/
 │   ├── FormLogin.cs
-│   ├── FormDashboard.cs
+│   ├── FormRegisterPatient.cs
+│   ├── FormDashboardAdmin.cs
+│   ├── FormDashboardDoctor.cs
+│   ├── FormDashboardPatient.cs
 │   ├── FormUsers.cs
-│   ├── FormPatients.cs
 │   ├── FormDoctors.cs
-│   ├── FormMedicines.cs
-│   ├── FormVisits.cs
+│   ├── FormDoctorSchedules.cs
+│   ├── FormPatients.cs
+│   ├── FormReservations.cs
+│   ├── FormCheckIn.cs
+│   ├── FormQueues.cs
 │   ├── FormExaminations.cs
+│   ├── FormMedicines.cs
+│   ├── FormHistory.cs
 │   └── FormReports.cs
 ├── Models/
-│   ├── Account.cs
+│   ├── UserAccount.cs
 │   ├── Admin.cs
-│   ├── User.cs
+│   ├── DoctorAccount.cs
+│   ├── PatientAccount.cs
 │   ├── Person.cs
-│   ├── Patient.cs
-│   ├── Doctor.cs
-│   ├── Medicine.cs
+│   ├── DoctorProfile.cs
+│   ├── PatientProfile.cs
+│   ├── DoctorSchedule.cs
+│   ├── Reservation.cs
 │   ├── Visit.cs
 │   ├── Examination.cs
-│   └── ExaminationMedicine.cs
+│   ├── Medicine.cs
+│   └── PrescriptionDetail.cs
 ├── Services/
 │   ├── AuthService.cs
 │   ├── UserService.cs
-│   ├── PatientService.cs
 │   ├── DoctorService.cs
-│   ├── MedicineService.cs
+│   ├── ScheduleService.cs
+│   ├── PatientService.cs
+│   ├── ReservationService.cs
 │   ├── VisitService.cs
 │   ├── ExaminationService.cs
+│   ├── MedicineService.cs
 │   └── ReportService.cs
 ├── Repositories/
-│   ├── IDataRepository.cs
+│   ├── IRepository.cs
 │   ├── UserRepository.cs
-│   ├── PatientRepository.cs
 │   ├── DoctorRepository.cs
-│   ├── MedicineRepository.cs
+│   ├── ScheduleRepository.cs
+│   ├── PatientRepository.cs
+│   ├── ReservationRepository.cs
 │   ├── VisitRepository.cs
-│   └── ExaminationRepository.cs
+│   ├── ExaminationRepository.cs
+│   ├── MedicineRepository.cs
+│   └── PrescriptionRepository.cs
 ├── Helpers/
 │   ├── DatabaseHelper.cs
 │   ├── SessionHelper.cs
-│   └── ValidationHelper.cs
+│   ├── ValidationHelper.cs
+│   └── QueueHelper.cs
 └── Program.cs
 ```
 
 ---
 
-# 27. Pembagian Tugas 4 Orang
+# 30. Desain Tampilan UI
 
-## Anggota 1 — Login, Akun Internal, Dashboard
+Karena kamu menginginkan tampilan dengan warna yang **satu tone dengan biru muda**, maka tema visual yang disarankan adalah:
+
+## 30.1 Konsep UI
+
+- bersih
+- modern
+- ringan
+- tidak terlalu ramai
+- nyaman untuk aplikasi kesehatan
+
+## 30.2 Rekomendasi Palet Warna
+
+- **Primary:** `#004BCD` _(biru muda utama)_
+- **Secondary:** `#79AAFF`
+- **Accent:** `#D6F1FA`
+- **Background:** `#F4FBFE`
+- **Card / Panel:** `#EAF7FC`
+- **Text utama:** `#072A38`
+- **Text sekunder:** `#4C7382`
+
+## 30.3 Saran Implementasi Visual
+
+- gunakan navbar/sidebar biru muda lembut
+- gunakan panel putih kebiruan
+- gunakan tombol utama dengan biru muda yang sedikit lebih gelap
+- gunakan ikon sederhana
+- gunakan font yang bersih seperti **Segoe UI**
+- gunakan data grid dengan header biru muda
+
+## 30.4 Kesan yang Ingin Dicapai
+
+- profesional
+- ramah
+- bersih
+- cocok untuk tema kesehatan
+
+---
+
+# 31. Pembagian Tugas untuk 4 Orang
+
+## Anggota 1 — Login, Session, Akun, Dashboard
+
 Fokus:
+
 - form login
-- session
-- role access
-- dashboard
-- manajemen akun internal
+- registrasi pasien
+- session management
+- dashboard per role
+- manajemen akun
 
 Class utama:
-- `Account`
+
+- `UserAccount`
 - `Admin`
-- `User`
+- `DoctorAccount`
+- `PatientAccount`
 - `AuthService`
-- `UserService`
 
----
+## Anggota 2 — Dokter dan Jadwal
 
-## Anggota 2 — Modul Pasien dan Dokter
 Fokus:
-- CRUD pasien
+
 - CRUD dokter
-- pencarian data
-- validasi data
+- CRUD jadwal dokter
+- daftar jadwal dokter
+- validasi kuota jadwal
 
 Class utama:
-- `Patient`
-- `Doctor`
-- `PatientService`
+
+- `DoctorProfile`
+- `DoctorSchedule`
 - `DoctorService`
+- `ScheduleService`
 
----
+## Anggota 3 — Pasien dan Reservasi
 
-## Anggota 3 — Modul Obat dan Kunjungan
 Fokus:
-- CRUD obat
-- pendaftaran kunjungan
-- status kunjungan
+
+- profil pasien
+- reservasi online
+- verifikasi reservasi
+- check-in dan antrian
 
 Class utama:
-- `Medicine`
+
+- `PatientProfile`
+- `Reservation`
 - `Visit`
-- `MedicineService`
+- `ReservationService`
 - `VisitService`
 
----
+## Anggota 4 — Pemeriksaan, Obat, Riwayat, Laporan
 
-## Anggota 4 — Pemeriksaan, Detail Obat, Riwayat, Laporan
 Fokus:
+
 - pemeriksaan pasien
-- detail obat
-- riwayat pasien
-- laporan sederhana
-- integrasi akhir
+- resep/detail obat
+- pengurangan stok
+- riwayat
+- laporan
 
 Class utama:
+
 - `Examination`
-- `ExaminationMedicine`
+- `Medicine`
+- `PrescriptionDetail`
 - `ExaminationService`
+- `MedicineService`
 - `ReportService`
 
 ---
 
-# 28. Skenario Demo Presentasi
+# 32. Skenario Demo Presentasi
 
-Urutan demo yang disarankan:
+Urutan demo yang direkomendasikan:
 
-1. Login sebagai **Admin**
-2. Tampilkan dashboard
-3. Tambah akun user
-4. Tambah pasien
-5. Tambah dokter
-6. Tambah obat
-7. Buat kunjungan pasien
-8. Catat hasil pemeriksaan
-9. Tambahkan obat pada pemeriksaan
-10. Tunjukkan stok obat berkurang
-11. Buka riwayat pasien
-12. Tampilkan laporan sederhana
-13. Logout
-14. Login sebagai **User**
-15. Tunjukkan perbedaan hak akses
+## Skenario 1 — Pasien
 
-> Demo ini akan terlihat lengkap karena memperlihatkan:
-> login → master data → operasional → relasi → output → role access.
+1. Registrasi akun pasien
+2. Login sebagai pasien
+3. Lihat jadwal dokter
+4. Buat reservasi online
+5. Lihat status reservasi
+
+## Skenario 2 — Admin
+
+6. Login sebagai admin
+7. Lihat reservasi masuk
+8. Konfirmasi reservasi
+9. Lakukan check-in saat pasien datang
+10. Tampilkan antrian pasien
+
+## Skenario 3 — Dokter
+
+11. Login sebagai dokter
+12. Lihat daftar pasien hari ini
+13. Buka riwayat pasien
+14. Isi hasil pemeriksaan
+15. Tambahkan obat
+16. Simpan pemeriksaan
+
+## Skenario 4 — Hasil Akhir
+
+17. Login lagi sebagai pasien
+18. Lihat riwayat pemeriksaan
+19. Login sebagai admin
+20. Lihat laporan reservasi dan stok obat
+
+> Urutan ini sangat bagus untuk presentasi karena memperlihatkan end-to-end system:
+> **pasien reservasi → admin verifikasi → dokter periksa → sistem menyimpan riwayat**.
 
 ---
 
-# 29. Risiko dan Solusi
+# 33. Risiko dan Solusi
 
 ## Risiko
-- scope melebar terlalu jauh
-- integrasi database antar anggota bentrok
-- pengurangan stok obat tidak sinkron
-- role access terlupa saat implementasi form
+
+- terlalu banyak modul jika tidak direncanakan
+- relasi database membingungkan
+- role access bisa keliru
+- logika status reservasi dan kunjungan bisa bertabrakan
+- update stok obat bisa terlewat
 
 ## Solusi
-- tentukan struktur tabel sejak awal
-- tentukan class model sebelum coding UI
-- gunakan service layer agar logika bisnis tidak tersebar
-- buat satu anggota sebagai integrator final
-- uji fitur utama satu per satu berdasarkan alur sistem
+
+- kunci desain database sejak awal
+- buat enum/status yang konsisten
+- pisahkan service layer dari form
+- buat role checking di satu helper/service
+- integrasi modul dilakukan bertahap sesuai alur utama
+- prioritaskan fitur inti sebelum polishing tampilan
 
 ---
 
-# 30. Kesimpulan
+# 34. Kesimpulan
 
-KlinikSehat Desktop adalah aplikasi manajemen klinik internal yang:
-- memiliki **2 role**: Admin dan User,
-- mempunyai **fitur cukup lengkap** untuk operasional inti klinik,
-- memakai **minimal 5 tabel berelasi** dan pada versi ini menggunakan **7 tabel berelasi**,
-- sangat cocok untuk implementasi **OOP** dalam C# desktop application.
+Sistem **KlinikSehat** versi ini sudah memenuhi kebutuhan revisi dosen karena:
 
-### Keunggulan dokumen ini
-- alur sistem saling terhubung,
-- fitur tidak berdiri sendiri,
-- database mendukung seluruh proses,
-- OOP bisa dijelaskan dengan jelas saat presentasi,
-- realistis untuk dikembangkan di Visual Studio.
+- memiliki **3 role** yang jelas: **Admin**, **Dokter**, dan **Pasien**
+- mendukung **reservasi digital/online**
+- memakai **minimal 5 tabel berelasi**, dan pada desain ini menggunakan **9 tabel berelasi**
+- memiliki fitur yang saling terhubung dan logis untuk benar-benar diimplementasikan
+- tetap realistis untuk tugas kelompok berbasis **Visual Studio + C#**
+- sangat kuat untuk menunjukkan konsep **OOP**
+
+## Nilai Tambah Dokumen Ini
+
+- ada use case
+- ada activity diagram
+- ada sequence diagram
+- ada class diagram
+- ada ERD
+- ada rekomendasi UI tema biru muda
+- ada pembagian tugas tim
+- ada alur sistem end-to-end
 
 ---
 
-# 31. Rekomendasi Implementasi
+# 35. Rekomendasi Implementasi Bertahap
 
-Agar sistem benar-benar bisa dibangun dan “jalan semua”, urutan pengerjaan yang paling aman adalah:
+Agar proyek lebih aman dikerjakan, urutan implementasi yang disarankan adalah:
 
-1. buat database dan tabel relasi terlebih dahulu,
-2. buat model class sesuai tabel,
-3. buat login dan role access,
-4. buat CRUD master data: pasien, dokter, obat,
-5. buat modul kunjungan,
-6. buat modul pemeriksaan,
-7. buat modul detail obat + update stok,
-8. buat riwayat dan laporan,
-9. lakukan testing integrasi.
+1. buat database dan seluruh tabel relasi terlebih dahulu
+2. buat model class sesuai tabel
+3. buat login dan role-based dashboard
+4. buat master data dokter, jadwal, dan obat
+5. buat registrasi dan profil pasien
+6. buat reservasi online
+7. buat verifikasi reservasi dan check-in
+8. buat pemeriksaan dan resep
+9. buat riwayat
+10. buat laporan
+11. rapikan tampilan tema biru muda
 
-> Dengan urutan ini, tim akan lebih mudah memastikan semua fitur memang terhubung dan berfungsi.
+> Dengan urutan ini, semua fitur akan lebih mudah diuji satu per satu sampai seluruh sistem benar-benar “jalan semua”.
