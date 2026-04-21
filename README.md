@@ -19,13 +19,13 @@
 
 ## 1.2 Jenis Produk
 
-Aplikasi desktop manajemen klinik.
+Aplikasi desktop manajemen klinik dengan reservasi digital/online.
 
 ## 1.3 Platform dan Teknologi
 
 - **Bahasa:** C#
 - **IDE:** Visual Studio
-- **UI:** Windows Forms 
+- **UI:** Windows Forms _(disarankan karena lebih ringan dan realistis untuk tugas kelompok)_
 - **Database:** SQL Server LocalDB atau SQLite
 - **Arsitektur:** Layer sederhana (Forms, Models, Services, Repositories, Helpers)
 
@@ -1926,4 +1926,4 @@ Agar proyek lebih aman dikerjakan, urutan implementasi yang disarankan adalah:
 10. buat laporan
 11. rapikan tampilan tema biru muda
 
-> Dengan urutan ini, semua fitur akan lebih mudah diuji satu per satu sampai seluruh sistem benar-benar “jalan semua”.
+> Sudah
