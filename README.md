@@ -2,12 +2,9 @@
 
 ## Desktop App C# (Visual Studio)
 
-> Sistem dirancang untuk dibuat menggunakan **Visual Studio + C#** sebagai **aplikasi desktop**, dengan 3 role utama:
->
-> 1. **Admin** _(merangkap front office)_
-> 2. **Dokter**
-> 3. **Pasien**
->
+**Pemrograman Berorientasi Objek**.  
+> Aplikasi ditujukan **khusus untuk penggunaan internal klinik** dan **hanya memiliki satu role login**, yaitu **Admin**.  
+> Platform pengembangan yang disarankan: **Desktop App** menggunakan **Visual Studio + C# + Windows Forms**.
 
 ---
 
