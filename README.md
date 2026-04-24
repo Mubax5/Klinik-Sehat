@@ -3,7 +3,6 @@
 ## Desktop App C# (Visual Studio)
 
 **Pemrograman Berorientasi Objek**.  
-> Aplikasi ditujukan **khusus untuk penggunaan internal klinik** dan **hanya memiliki satu role login**, yaitu **Admin**.  
 > Platform pengembangan yang disarankan: **Desktop App** menggunakan **Visual Studio + C# + Windows Forms**.
 
 ---
